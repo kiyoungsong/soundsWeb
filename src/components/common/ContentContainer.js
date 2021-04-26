@@ -1,25 +1,24 @@
 import React from "react";
 import styled from "styled-components";
+import LeftSide from "../templates/LeftSide";
+import RightSide from "../templates/RightSide";
 
 const Container = styled.div`
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 12px 60px 50px rgba(0, 0, 0, 0.7);
-  width: 1500px;
-  height: 800px;
+  width: 100%;
+  display: flex;
 `;
 
-const Section = styled.section``;
+const Section = styled.section`
+  width: 95%;
+`;
 
 const ContentContainer = ({ children }) => {
   return (
     <>
       <Container>
-        <Section></Section>
+        <LeftSide />
         <Section>{children}</Section>
-        <Section></Section>
+        <RightSide />
       </Container>
     </>
   );

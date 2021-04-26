@@ -4,14 +4,17 @@ const initialState = {
   isLoaded: false,
 };
 
-const main = createSlice({
+const mainStore = createSlice({
   name: "mainReducer",
   initialState,
-  showMain: (state, action) => {
-    return { ...state, isLoaded: action.payload };
+  reducers: {
+    showMain: (state, action) => {
+      console.log("test11");
+      return { ...state, isLoaded: action.payload };
+    },
   },
 });
 
-const { showMain } = main.actions;
+export const { showMain } = mainStore.actions;
 
-export default main.reducer;
+export default mainStore.reducer;

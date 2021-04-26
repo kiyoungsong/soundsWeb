@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled, { keyframes } from "styled-components";
-import ContentContainer from "../../components/common/ContentContainer";
 import { IoMdAirplane } from "react-icons/io";
+import Main from "../../components/templates/Main";
+import { showMain } from "../../store/main";
 
 const Container = styled.div``;
 
@@ -70,8 +72,12 @@ const CountTitle = styled.div`
 `;
 
 const MainPresenter = () => {
-  const [isLoaded, setLoaded] = useState(false);
+  const { isLoaded } = useSelector((state) => state.main);
+
+  const [loaded, setLoaded] = useState(false);
   const [counter, setCounter] = useState(0);
+
+  const dispatch = useDispatch();
   useEffect(() => {
     const countInterval = setInterval(() => {
       if (counter === 100) {
@@ -83,12 +89,17 @@ const MainPresenter = () => {
     }, 20);
     return () => clearInterval(countInterval);
   }, [counter]);
+
+  const onShowMain = (trigger) => {
+    dispatch(showMain(trigger));
+  };
+
   return (
     <>
-      <Container>
-        {isLoaded ? (
-          <ContentContainer></ContentContainer>
-        ) : (
+      {loaded && isLoaded ? (
+        <Main></Main>
+      ) : (
+        <Container>
           <LoadingContainer>
             <Setction>
               <BiPaperPlaneIcon></BiPaperPlaneIcon>
@@ -100,9 +111,10 @@ const MainPresenter = () => {
             <Setction>
               <CountTitle>{counter}</CountTitle>
             </Setction>
+            <button onClick={() => onShowMain(true)}>test</button>
           </LoadingContainer>
-        )}
-      </Container>
+        </Container>
+      )}
     </>
   );
 };

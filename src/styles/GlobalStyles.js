@@ -9,10 +9,11 @@ const GlobalStyles = createGlobalStyle`
         box-sizing:border-box;
     }
     body{
-        background:#191819;
+        background:#181919;
         font-size:20px;
         color:white;
         opacity:0.9;
+        font-family: 'Open Sans', sans-serif;
     }
 `;
 
